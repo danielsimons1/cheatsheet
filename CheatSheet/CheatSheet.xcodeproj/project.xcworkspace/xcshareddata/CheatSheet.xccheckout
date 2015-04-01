@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>227D9FE4-A702-4621-83F5-6DBB34C22309</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CheatSheet</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EA6E15CB5E9E7539DE41FD04FE790E902B2B721C</key>
+		<string>https://github.com/danielsimons1/cheatsheet.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CheatSheet/CheatSheet.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EA6E15CB5E9E7539DE41FD04FE790E902B2B721C</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/danielsimons1/cheatsheet.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EA6E15CB5E9E7539DE41FD04FE790E902B2B721C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EA6E15CB5E9E7539DE41FD04FE790E902B2B721C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cheatsheet</string>
+		</dict>
+	</array>
+</dict>
+</plist>
