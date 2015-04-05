@@ -8,8 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-#import "CSData.h"
-#import "DataAccess.h"
+#import <WatchCoreDataProxy/WatchCoreDataProxy.h>
 
 @interface MasterViewController ()
 
@@ -70,18 +69,12 @@
         
         [managedObject setTitle:[alertController.textFields.firstObject text]];
         
-        NSError *error = nil;
-        if (![context save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-
-        NSIndexPath *indexPath = [dataAccess.fetchedResultsController indexPathForObject:managedObject];
-        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [dataAccess saveContext];
+        //NSIndexPath *indexPath = [dataAccess.fetchedResultsController indexPathForObject:managedObject];
+       // dataAccess.fetchedResultsController
+        //[self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         
-        [self performSegueWithIdentifier:@"showDetail" sender:self];
+        [self performSegueWithIdentifier:@"showDetail" sender:managedObject];
         
 
     }];
@@ -103,12 +96,17 @@
 
 #pragma mark - Segues
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)managedObject {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         DataAccess *dataAccess = [DataAccess sharedInstance];
         CSData *cheatSheetDocument = [dataAccess.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        if (!cheatSheetDocument) {
+            cheatSheetDocument = managedObject;
+        }
+        
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         [controller setDetailItem:cheatSheetDocument];
         
@@ -146,13 +144,7 @@
         NSManagedObjectContext *context = [dataAccess.fetchedResultsController managedObjectContext];
         [context deleteObject:[dataAccess.fetchedResultsController objectAtIndexPath:indexPath]];
         
-        NSError *error = nil;
-        if (![context save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
+        [dataAccess saveContext];
 
     }
 }
@@ -213,6 +205,11 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 /*

@@ -8,8 +8,8 @@
 
 #import "InterfaceController.h"
 #import <CoreData/CoreData.h>
-#import "DataAccess.h"
-#import "CSData.h"
+#import <WatchCoreDataProxy/WatchCoreDataProxy.h>
+#import "CustomTableRowController.h"
 
 @interface InterfaceController()
 
@@ -28,12 +28,14 @@
 
 - (void)loadTableData {
     DataAccess *dataAccess = [DataAccess sharedInstance];
-    NSUInteger count = [[dataAccess.fetchedResultsController sections][0] numberOfObjects];
-    [self.tableView setNumberOfRows:count withRowType:@"CustomTableRowController"];
     NSArray *fetchedObjects = [[dataAccess fetchedResultsController] fetchedObjects];
+    NSUInteger count = [fetchedObjects count];
+    [self.tableView setNumberOfRows:count withRowType:@"CustomTableRowController"];
+    
     for (CSData *data in fetchedObjects) {
         NSInteger index = [fetchedObjects indexOfObject:data];
-        [[self.tableView rowControllerAtIndex:index] setTitle:data.title];
+        CustomTableRowController *tableRowController = [self.tableView rowControllerAtIndex:index];
+        [[tableRowController titleLabel] setText:[data title]];
     }
 }
 
@@ -45,6 +47,21 @@
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
+}
+
+- (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
+    NSLog(@"index : %@", [[NSNumber numberWithInteger:rowIndex] stringValue]);
+    
+    [self pushControllerWithName:@"secondInterface" context:[table rowControllerAtIndex:rowIndex]];
+}
+
+- (id)contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex {
+    if ([segueIdentifier isEqualToString:@"secondInterface"]) {
+        DataAccess *dataAccess = [DataAccess sharedInstance];
+        NSArray *fetchedObjects = [[dataAccess fetchedResultsController] fetchedObjects];
+        return [fetchedObjects objectAtIndex:rowIndex];
+    }
+    return nil;
 }
 
 @end

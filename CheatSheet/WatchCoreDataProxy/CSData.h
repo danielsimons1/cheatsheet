@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CSDoc.h"
-
-@class CSDoc;
+#import <CoreData/CoreData.h>
 
 @interface CSData : NSManagedObject
 
-@property (nonatomic, retain) CSDoc *doc;
+@property (nonatomic, retain) NSData *fullImage;
 @property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSMutableSet *screenshots;
 
-- (id)initWithTitle:(NSString*)title doc:(CSDoc *)doc;
+- (id)initWithTitle:(NSString*)title fullImage:(NSData *)data;
 
 @end

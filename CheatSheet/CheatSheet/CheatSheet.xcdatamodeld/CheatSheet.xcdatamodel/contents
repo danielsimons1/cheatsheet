@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="CSData" representedClassName="CSData">
+        <attribute name="fullImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String">
             <userInfo/>
         </attribute>
-        <relationship name="doc" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CSDoc" inverseName="data" inverseEntity="CSDoc" syncable="YES"/>
+        <relationship name="screenshots" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CSScreenshot" inverseName="data" inverseEntity="CSScreenshot" syncable="YES"/>
         <userInfo/>
     </entity>
-    <entity name="CSDoc" representedClassName="CSDoc" syncable="YES">
-        <attribute name="fullImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="thumbImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <relationship name="data" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CSData" inverseName="doc" inverseEntity="CSData" syncable="YES"/>
+    <entity name="CSScreenshot" representedClassName="CSScreenshot" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="scale" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="translationX" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="translationY" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="data" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CSData" inverseName="screenshots" inverseEntity="CSData" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CSData" positionX="261" positionY="189" width="128" height="73"/>
-        <element name="CSDoc" positionX="261" positionY="198" width="128" height="88"/>
+        <element name="CSData" positionX="261" positionY="189" width="128" height="88"/>
+        <element name="CSScreenshot" positionX="261" positionY="216" width="128" height="118"/>
     </elements>
 </model>

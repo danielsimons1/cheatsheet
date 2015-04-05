@@ -8,6 +8,7 @@
 
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
+#import <WatchCoreDataProxy/WatchCoreDataProxy.h>
 
 @interface InterfaceController : WKInterfaceController
 @property (strong, nonatomic) IBOutlet WKInterfaceTable *tableView;

@@ -11,15 +11,17 @@
 @implementation CSData
 
 @dynamic title;
-@dynamic doc;
+@dynamic fullImage;
+@dynamic screenshots;
 
 
-- (id)initWithTitle:(NSString *)title doc:(CSDoc *)doc {
+- (id)initWithTitle:(NSString *)title fullImage:(NSData *)fullImage {
     if ((self = [super init])) {
         self.title = title;
-        self.doc = doc;
+        self.fullImage = fullImage;
     }
     return self;
 }
 
 @end
+

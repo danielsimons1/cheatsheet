@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 #import "DetailViewController.h"
 #import "MasterViewController.h"
-#import "CSDoc.h"
-#import "DataAccess.h"
+#import <WatchCoreDataProxy/WatchCoreDataProxy.h>
+
 
 #define kBundleKeyTechVersion               @"CFBundleVersion"
 #define kUserDefaultKeyLastVersion          @"CFBundleVersionOfLastRun"
@@ -97,9 +97,13 @@
 
 - (void)createInitialSeed {
 
-    [self createCheatSheetEntity:@"Conversions" withImageName:@"conversions.jpg"];
+    [self createCheatSheetEntity:@"Geometry" withImageName:@"geometricalformulas.png"];
 
-    [self createCheatSheetEntity:@"Algebra" withImageName:@"algebrareduced.jpg"];
+    [self createCheatSheetEntity:@"Algebra" withImageName:@"algebraformulas.gif"];
+    
+    [self createCheatSheetEntity:@"Physics" withImageName:@"physics.png"];
+    
+    [self createCheatSheetEntity:@"Chemistry" withImageName:@"periodictable.jpg"];
 
 }
 
@@ -110,22 +114,11 @@
     
     [managedObject setTitle:title];
     
-    NSEntityDescription *docEntity = [NSEntityDescription entityForName:@"CSDoc" inManagedObjectContext:dataAccess.managedObjectContext];
-    CSDoc *docManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[docEntity name] inManagedObjectContext:dataAccess.managedObjectContext];
-    
-    
     NSData *dataImage = UIImageJPEGRepresentation([UIImage imageNamed:imageName], 0.0);
     
-    [docManagedObject setValue:dataImage forKey:@"fullImage"];
-    //CSDoc *cheatSheetDoc = [[CSDoc alloc] initWithTitle:[alertController.textFields.firstObject text] thumbImage:nil fullImage:nil];
-    [managedObject setDoc:docManagedObject];
-    NSError *error = nil;
-    if (![dataAccess.managedObjectContext save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    [managedObject setValue:dataImage forKey:@"fullImage"];
+    
+    [dataAccess saveContext];
 }
 
 @end

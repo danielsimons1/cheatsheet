@@ -15,9 +15,8 @@
 
 @interface CSDoc : NSManagedObject
 
-@property (strong) NSData *thumbImage;
 @property (strong) NSData *fullImage;
 
-- (id)initWithThumbImage:(NSData *)thumbImage fullImage:(NSData *)fullImage;
+- (id)initWithFullImage:(NSData *)fullImage;
 
 @end

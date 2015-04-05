@@ -21,8 +21,6 @@
     return sharedInstance;
 }
 
-
-
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil) {
@@ -35,10 +33,10 @@
     [fetchRequest setEntity:entity];
 
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    //[fetchRequest setFetchBatchSize:20];
 
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
 
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -61,6 +59,42 @@
 
 }
 
+- (NSFetchedResultsController *)fetchedScreenshotsResultsController:(CSData *)csdata
+{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CSScreenshot" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    //[fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"My Cheat Sheet Screens"];
+    aFetchedResultsController.delegate = self;
+    self.fetchedScreenshotsResultsController = aFetchedResultsController;
+    
+    NSError *error = nil;
+    if (![self.fetchedScreenshotsResultsController performFetch:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _fetchedScreenshotsResultsController;
+    
+}
+
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -77,7 +111,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"WatchModel" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CheatSheet" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -141,7 +175,24 @@
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
+        } else {
+            self.fetchedResultsController = nil;
+            [NSFetchedResultsController deleteCacheWithName:@"My Cheat Sheets"];
         }
     }
 }
+
+- (void)storeScreenshotForData:(CSData *)csdata screenshotData:(NSData *)pngData scale:(CGFloat)    imageScale translationX:(CGFloat)imageTranslationX translationY:(CGFloat)imageTranslationY {
+    
+    CSScreenshot *managedObject = [NSEntityDescription insertNewObjectForEntityForName:@"CSScreenshot" inManagedObjectContext:self.managedObjectContext];
+    
+    [managedObject setData:csdata];
+    [managedObject setImageData:pngData];
+    [managedObject setScale:[NSNumber numberWithFloat:imageScale]];
+    [managedObject setTranslationX:[NSNumber numberWithFloat:imageTranslationX]];
+    [managedObject setTranslationY:[NSNumber numberWithFloat:imageTranslationY]];
+    
+    [self saveContext];
+}
+
 @end

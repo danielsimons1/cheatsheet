@@ -10,13 +10,11 @@
 
 @implementation CSDoc
 
-@synthesize thumbImage = _thumbImage;
 @synthesize fullImage  = _fullImage;
 
 
-- (id)initWithThumbImage:(NSData *)thumbImage fullImage:(NSData *)fullImage {
+- (id)initWithFullImage:(NSData *)fullImage {
     if ((self = [super init])) {
-        self.thumbImage = thumbImage;
         self.fullImage = fullImage;
     }
     return self;

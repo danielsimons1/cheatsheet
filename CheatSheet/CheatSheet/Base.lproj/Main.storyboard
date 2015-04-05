@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -31,8 +32,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DjG-yd-dcI">
-                                <rect key="frame" x="16" y="64" width="568" height="536"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DjG-yd-dcI">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbD-kp-Kob">
@@ -68,19 +69,111 @@
                                     <constraint firstAttribute="width" constant="300" id="FzT-YU-e9S"/>
                                 </constraints>
                             </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Sj-z8-dkK">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Photo" image="camera-7" id="iRX-KO-Quf"/>
+                                    <tabBarItem title="Screenshots" image="file-three-7" id="5s3-OC-WO6"/>
+                                    <tabBarItem systemItem="more" id="GCO-Vv-V7J"/>
+                                </items>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tabBar>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QqF-MW-rbd">
+                                <rect key="frame" x="141" y="155" width="319" height="390"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="390" id="KZp-O5-ZdW"/>
+                                    <constraint firstAttribute="width" constant="319" id="hVN-Wr-KYh"/>
+                                </constraints>
+                            </view>
+                            <view userInteractionEnabled="NO" alpha="0.5499999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqv-pB-kAN">
+                                <rect key="frame" x="0.0" y="64" width="141" height="487"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view userInteractionEnabled="NO" alpha="0.5499999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbn-1B-9z2">
+                                <rect key="frame" x="460" y="64" width="140" height="487"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view userInteractionEnabled="NO" alpha="0.5499999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feQ-Ch-CHw">
+                                <rect key="frame" x="141" y="545" width="319" height="7"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTs-wf-vbz">
+                                <rect key="frame" x="200" y="72" width="200" height="40"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="26V-gO-5ou"/>
+                                    <constraint firstAttribute="height" constant="40" id="ZUq-ct-EAe"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="2" height="2"/>
+                                <state key="normal" title="Capture">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressCaptureButton:" destination="JEX-9P-axG" eventType="touchUpInside" id="T6C-nv-hLE"/>
+                                </connections>
+                            </button>
+                            <view userInteractionEnabled="NO" alpha="0.5499999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t3x-3x-gQr">
+                                <rect key="frame" x="141" y="64" width="319" height="91"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="t3x-3x-gQr" secondAttribute="trailing" constant="124" id="0Aw-rS-Yb7"/>
+                            <constraint firstAttribute="centerY" secondItem="DjG-yd-dcI" secondAttribute="centerY" constant="-32" id="4vG-ox-AkZ"/>
+                            <constraint firstItem="t3x-3x-gQr" firstAttribute="leading" secondItem="jqv-pB-kAN" secondAttribute="trailing" id="6fy-By-Neb"/>
+                            <constraint firstItem="feQ-Ch-CHw" firstAttribute="top" secondItem="QqF-MW-rbd" secondAttribute="bottom" id="75t-3K-b7f"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Sbn-1B-9z2" secondAttribute="trailing" constant="-16" id="DAH-hD-fEG"/>
+                            <constraint firstItem="Sbn-1B-9z2" firstAttribute="leading" secondItem="QqF-MW-rbd" secondAttribute="trailing" id="G9b-8S-LhV"/>
+                            <constraint firstItem="jqv-pB-kAN" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="IuR-U8-M7L"/>
+                            <constraint firstItem="Sbn-1B-9z2" firstAttribute="leading" secondItem="feQ-Ch-CHw" secondAttribute="trailing" id="JEU-Om-sTS"/>
                             <constraint firstAttribute="centerY" secondItem="jbD-kp-Kob" secondAttribute="centerY" constant="-32" id="Jt2-VH-myH"/>
                             <constraint firstAttribute="centerX" secondItem="jbD-kp-Kob" secondAttribute="centerX" id="Lne-l7-8e5"/>
+                            <constraint firstAttribute="centerX" secondItem="qTs-wf-vbz" secondAttribute="centerX" constant="-0.5" id="MWs-Ms-8Mh"/>
+                            <constraint firstItem="QqF-MW-rbd" firstAttribute="leading" secondItem="jqv-pB-kAN" secondAttribute="trailing" id="Nrl-ll-Sna"/>
+                            <constraint firstItem="t3x-3x-gQr" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="125" id="R8t-3z-G5b"/>
+                            <constraint firstAttribute="centerX" secondItem="9Sj-z8-dkK" secondAttribute="centerX" id="Rkv-E0-3xJ"/>
+                            <constraint firstItem="DjG-yd-dcI" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="Xgn-VK-Leg"/>
+                            <constraint firstItem="t3x-3x-gQr" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="ZCN-uR-vLm"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="feQ-Ch-CHw" secondAttribute="bottom" constant="48" id="azm-hw-weD"/>
+                            <constraint firstItem="feQ-Ch-CHw" firstAttribute="leading" secondItem="jqv-pB-kAN" secondAttribute="trailing" id="bU7-GT-qaH"/>
+                            <constraint firstItem="Sbn-1B-9z2" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="bmu-LD-7cc"/>
+                            <constraint firstAttribute="centerY" secondItem="QqF-MW-rbd" secondAttribute="centerY" constant="-50" id="c5f-9d-cqG"/>
+                            <constraint firstAttribute="width" secondItem="DjG-yd-dcI" secondAttribute="width" id="cSD-Ro-G0K"/>
+                            <constraint firstItem="Sbn-1B-9z2" firstAttribute="leading" secondItem="t3x-3x-gQr" secondAttribute="trailing" id="dKE-cT-JLM"/>
+                            <constraint firstItem="9Sj-z8-dkK" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="dvl-W3-yWN"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="9Sj-z8-dkK" secondAttribute="bottom" id="ezN-qW-5N5"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Sbn-1B-9z2" secondAttribute="bottom" constant="49" id="ijt-m9-8e3"/>
+                            <constraint firstAttribute="centerX" secondItem="DjG-yd-dcI" secondAttribute="centerX" id="mkf-zh-cdT"/>
+                            <constraint firstItem="jqv-pB-kAN" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="oaS-SJ-UxP"/>
+                            <constraint firstItem="QqF-MW-rbd" firstAttribute="top" secondItem="t3x-3x-gQr" secondAttribute="bottom" id="pYk-D6-189"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="jqv-pB-kAN" secondAttribute="bottom" constant="49" id="tdB-AI-lRj"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="DjG-yd-dcI" secondAttribute="bottom" id="uhJ-uv-W9O"/>
+                            <constraint firstAttribute="centerX" secondItem="QqF-MW-rbd" secondAttribute="centerX" constant="-0.5" id="xO3-P0-dae"/>
+                            <constraint firstItem="qTs-wf-vbz" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="xoj-F6-uIH"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4vG-ox-AkZ"/>
+                                <exclude reference="0Aw-rS-Yb7"/>
+                                <exclude reference="R8t-3z-G5b"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" image="share" id="PiU-2L-eRe"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="captureButton" destination="qTs-wf-vbz" id="2rv-d2-hzk"/>
                         <outlet property="imageView" destination="DjG-yd-dcI" id="kXq-Tf-tPw"/>
+                        <outlet property="photoScreensTabBar" destination="9Sj-z8-dkK" id="HfQ-5r-54d"/>
+                        <outlet property="photoTabBarItem" destination="iRX-KO-Quf" id="PoL-oa-j5H"/>
+                        <outlet property="screenshotButton" destination="5s3-OC-WO6" id="owV-qg-DgJ"/>
+                        <outlet property="screenshotView" destination="QqF-MW-rbd" id="yhk-Pa-Tz1"/>
+                        <outlet property="screenshotsTabBarItem" destination="5s3-OC-WO6" id="7Kb-76-VNl"/>
                         <outlet property="selectPhotoButton" destination="ssd-Xs-7M5" id="WgA-wC-NYo"/>
                         <outlet property="takePhotoButton" destination="c9M-cW-eYu" id="YOO-Tw-7XC"/>
                         <outlet property="uploadPhotoView" destination="jbD-kp-Kob" id="rsS-zx-63S"/>
@@ -113,7 +206,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyBasicCell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyBasicCell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
@@ -162,11 +255,32 @@
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Yec-r2-Jfa">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bqK-M7-biU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wYy-d1-luY"/>
+                        <viewControllerLayoutGuide type="bottom" id="0ND-pq-TqL"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="c0A-vU-cbl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Vr-nw-ck1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
+        <image name="camera-7" width="24" height="24"/>
+        <image name="file-three-7" width="24" height="24"/>
         <image name="share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

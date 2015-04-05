@@ -10,26 +10,43 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <table alignment="left" id="Ckn-Ze-4AO">
+                        <table alignment="left" verticalAlignment="center" id="Ckn-Ze-4AO">
                             <items>
                                 <tableRow identifier="CustomTableRowController" id="1Rm-sS-M1r" customClass="CustomTableRowController">
                                     <group key="rootItem" width="1" alignment="left" id="4nd-v5-ufH">
                                         <items>
-                                            <label width="69" height="33" alignment="left" text="Label" id="aXr-TO-3Il"/>
+                                            <label width="121" height="33" alignment="left" text="Label" id="aXr-TO-3Il"/>
                                         </items>
                                     </group>
                                     <connections>
                                         <outlet property="titleLabel" destination="aXr-TO-3Il" id="ddt-aW-Ber"/>
+                                        <segue destination="QSU-YS-pMt" kind="push" identifier="secondInterface" id="Ibh-u7-J2a"/>
                                     </connections>
                                 </tableRow>
                             </items>
                         </table>
                     </items>
+                    <color key="backgroundColor" red="0.12941176469999999" green="0.32156862749999998" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="tableView" destination="Ckn-Ze-4AO" id="ei2-4Z-v9g"/>
                     </connections>
                 </controller>
             </objects>
+        </scene>
+        <!--secondInterfaceController-->
+        <scene sceneID="KY3-sk-HAF">
+            <objects>
+                <controller identifier="secondInterfaceController" id="QSU-YS-pMt" customClass="SecondInterfaceController">
+                    <items>
+                        <imageView alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" animationDuration="1" id="gRO-56-5ZB"/>
+                    </items>
+                    <color key="backgroundColor" red="0.0022001092589999998" green="0.72901570049999997" blue="0.0071797804959999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="imageView" destination="gRO-56-5ZB" id="0QR-Ev-Oca"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="323" y="197"/>
         </scene>
     </scenes>
 </document>

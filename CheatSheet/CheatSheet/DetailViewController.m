@@ -7,6 +7,8 @@
 //
 
 #import "DetailViewController.h"
+#import <WatchCoreDataProxy/WatchCoreDataProxy.h>
+#import "ScreenshotsViewController.h"
 
 @interface DetailViewController ()
 
@@ -16,12 +18,12 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
+- (void)setDetailItem:(CSData *)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
             
         // Update the view.
-        [self configureView];
+        //[self configureView];
     }
 }
 
@@ -30,8 +32,8 @@
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem title];
         self.navigationItem.title = self.detailItem.title;
-        if (self.detailItem.doc.fullImage) {
-            self.imageView.image = [UIImage imageWithData:self.detailItem.doc.fullImage];
+        if (self.detailItem.fullImage) {
+            self.imageView.image = [UIImage imageWithData:self.detailItem.fullImage];
             self.uploadPhotoView.hidden = YES;
             self.imageView.hidden = NO;
         } else {
@@ -42,6 +44,19 @@
         }
     }
     
+    self.screenshotView.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.screenshotView.layer.borderWidth = 5.;
+    
+    [self.captureButton.layer setCornerRadius:8.];
+    [self.captureButton.layer setShadowColor:[[UIColor blackColor] CGColor]];
+    [self.captureButton.layer setShadowRadius:10.];
+    [self.captureButton.layer setShadowOffset:CGSizeMake(5., 5.)];
+    [self.captureButton.layer setShadowOpacity:.7];
+    
+    [self.photoScreensTabBar setSelectedItem:self.photoTabBarItem];
+    self.screenshotsTabBarItem.badgeValue = [[NSNumber numberWithInteger:[self.detailItem.screenshots count]] stringValue];
+    self.photoScreensTabBar.delegate = self;
+    
     self.imageView.userInteractionEnabled = YES;
     UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scaleImage:)];
     [self.imageView addGestureRecognizer:pinchGestureRecognizer];
@@ -50,8 +65,6 @@
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panImage:)];
     [self.imageView addGestureRecognizer:panGestureRecognizer];
     panGestureRecognizer.delegate = self;
-    
-    
 }
 
 - (void)viewDidLoad {
@@ -106,19 +119,9 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     
-    if (! self.detailItem.doc) {
-        self.detailItem.doc = [NSEntityDescription insertNewObjectForEntityForName:@"CSDoc" inManagedObjectContext:self.managedObjectContext];
-    }
+    self.detailItem.fullImage = UIImageJPEGRepresentation(chosenImage, 0.0);
     
-    self.detailItem.doc.fullImage = UIImagePNGRepresentation(chosenImage);
-    
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    [[DataAccess sharedInstance] saveContext];
 //    NSError *error = nil;
 //    if (![context save:&error]) {
 //        // Replace this implementation with code to handle the error appropriately.
@@ -136,6 +139,81 @@
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     [self configureView];
+}
+
+- (IBAction)didPressCaptureButton:(UIButton *)sender {
+    
+    float imageScale = sqrtf(powf(self.imageView.transform.a, 2.f) + powf(self.imageView.transform.c, 2.f));
+    
+    [self captureScreenshot:imageScale imageTranslationX:self.imageView.frame.origin.x imageTranslationY:self.imageView.frame.origin.y];
+}
+
+# pragma mark - private methods
+
+- (void)captureScreenshot:(CGFloat)imageScale imageTranslationX:(CGFloat)imageTranslationX imageTranslationY:(CGFloat)imageTranslationY {
+    
+    //Image Size
+    CGSize captureSize = CGSizeMake(self.screenshotView.frame.size.width, self.screenshotView.frame.size.height);
+    
+    //Begin Graphics Context
+    UIGraphicsBeginImageContextWithOptions(captureSize, YES, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //Translate
+    CGContextTranslateCTM(context, -self.screenshotView.frame.origin.x + imageTranslationX, -self.screenshotView.frame.origin.y + imageTranslationY );
+    
+    //Scale
+    CGContextScaleCTM(context, imageScale, imageScale);
+    
+    //Render
+    [self.imageView.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //End Graphics Context
+    UIGraphicsEndImageContext();
+    
+    //Store Screenshot
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"image.png"]; //Add the file name
+    NSData *pngData = UIImagePNGRepresentation(img);
+    
+    [[DataAccess sharedInstance] storeScreenshotForData:self.detailItem screenshotData:pngData scale:imageScale translationX:imageTranslationX translationY:imageTranslationY];
+    
+    //Print to file for testing purposes only
+    [UIImagePNGRepresentation(img)  writeToFile:filePath atomically:YES];
+    
+    [self flashScreen];
+    
+    [self updateScreenshotBadgeValue];
+}
+
+- (void)updateScreenshotBadgeValue {
+    self.screenshotsTabBarItem.badgeValue = [[NSNumber numberWithInteger:[self.screenshotsTabBarItem.badgeValue integerValue] + 1] stringValue];
+}
+
+- (void)flashScreen {
+    //make the view if we haven't already and add it as a subview
+    [self.screenshotView setAlpha:1.0f];
+    [self.screenshotView setBackgroundColor:[UIColor blackColor]];
+    //flash animation code
+    [UIView beginAnimations:@"flash screen" context:nil];
+    [UIView setAnimationDuration:0.8f];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    [self.screenshotView setBackgroundColor:[UIColor clearColor]];
+    
+    [UIView commitAnimations];
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    if (item == self.screenshotsTabBarItem) {
+        NSLog(@"Tabbar item screenshot clicked");
+        ScreenshotsViewController *screenshotsViewController = [ScreenshotsViewController new];
+        screenshotsViewController.screenshots = self.detailItem.screenshots;
+        
+        [self presentViewController:screenshotsViewController animated:YES completion:nil];
+    }
 }
 
 
