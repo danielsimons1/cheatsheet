@@ -21,13 +21,13 @@
     // Do any additional setup after loading the view from its nib.
     //self.screenshotCollectionView.delegate = self;
     self.screenshotCollectionView.dataSource = self;
-    [self.screenshotCollectionView registerClass:[ScreenshotCollectionViewCell class] forCellWithReuseIdentifier:@"MyBasicCollectionCell"];
+    //[self.screenshotCollectionView registerClass:[ScreenshotCollectionViewCell class] forCellWithReuseIdentifier:@"MyBasicCollectionCell"];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(200, 200)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    
-    [self.screenshotCollectionView setCollectionViewLayout:flowLayout];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.screenshotCollectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +56,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ScreenshotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MyBasicCollectionCell" forIndexPath:indexPath];
+    ScreenshotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MyBasicBitchCell" forIndexPath:indexPath];
     CSScreenshot *screenshot = [[self.screenshots allObjects] objectAtIndex:indexPath.row];
     [cell.screenshotImage setImage: [UIImage imageWithData:screenshot.imageData]];
     return cell;

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScreenshotsViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ScreenshotsViewController : UIViewController<UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *screenshotCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 
 @property (strong, nonatomic) NSMutableSet *screenshots;
 @end

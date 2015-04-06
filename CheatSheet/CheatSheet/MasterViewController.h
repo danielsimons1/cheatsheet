@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@class DetailViewController;
+@class CSTabBarViewController;
 
 @interface MasterViewController : UITableViewController
 
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) CSTabBarViewController *tabBarController;
 
 
 @end

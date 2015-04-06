@@ -39,9 +39,8 @@
 		51C422541ACF3A2D002F7BFF /* CSScreenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 51C422521ACF3A2D002F7BFF /* CSScreenshot.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		51C422551ACF3A2D002F7BFF /* CSScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C422531ACF3A2D002F7BFF /* CSScreenshot.m */; };
 		51C4225D1AD1B6EC002F7BFF /* ScreenshotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C4225B1AD1B6EC002F7BFF /* ScreenshotsViewController.m */; };
-		51C4225E1AD1B6EC002F7BFF /* ScreenshotsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51C4225C1AD1B6EC002F7BFF /* ScreenshotsViewController.xib */; };
 		51C422621AD1B772002F7BFF /* ScreenshotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C422601AD1B772002F7BFF /* ScreenshotCollectionViewCell.m */; };
-		51C422631AD1B772002F7BFF /* ScreenshotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51C422611AD1B772002F7BFF /* ScreenshotCollectionViewCell.xib */; };
+		51C422661AD1C3E1002F7BFF /* CSTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C422651AD1C3E1002F7BFF /* CSTabBarViewController.m */; };
 		51E5F25E1ACE17F0005A7BDC /* geometricalformulas.png in Resources */ = {isa = PBXBuildFile; fileRef = 51E5F25B1ACE17F0005A7BDC /* geometricalformulas.png */; };
 		51E5F25F1ACE17F0005A7BDC /* algebraformulas.gif in Resources */ = {isa = PBXBuildFile; fileRef = 51E5F25C1ACE17F0005A7BDC /* algebraformulas.gif */; };
 		51E5F2601ACE17F0005A7BDC /* physics.png in Resources */ = {isa = PBXBuildFile; fileRef = 51E5F25D1ACE17F0005A7BDC /* physics.png */; };
@@ -166,10 +165,10 @@
 		51C422531ACF3A2D002F7BFF /* CSScreenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSScreenshot.m; sourceTree = "<group>"; };
 		51C4225A1AD1B6EC002F7BFF /* ScreenshotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenshotsViewController.h; sourceTree = "<group>"; };
 		51C4225B1AD1B6EC002F7BFF /* ScreenshotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenshotsViewController.m; sourceTree = "<group>"; };
-		51C4225C1AD1B6EC002F7BFF /* ScreenshotsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenshotsViewController.xib; sourceTree = "<group>"; };
 		51C4225F1AD1B772002F7BFF /* ScreenshotCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenshotCollectionViewCell.h; sourceTree = "<group>"; };
 		51C422601AD1B772002F7BFF /* ScreenshotCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenshotCollectionViewCell.m; sourceTree = "<group>"; };
-		51C422611AD1B772002F7BFF /* ScreenshotCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenshotCollectionViewCell.xib; sourceTree = "<group>"; };
+		51C422641AD1C3E1002F7BFF /* CSTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTabBarViewController.h; sourceTree = "<group>"; };
+		51C422651AD1C3E1002F7BFF /* CSTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTabBarViewController.m; sourceTree = "<group>"; };
 		51E5F25B1ACE17F0005A7BDC /* geometricalformulas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = geometricalformulas.png; sourceTree = "<group>"; };
 		51E5F25C1ACE17F0005A7BDC /* algebraformulas.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = algebraformulas.gif; sourceTree = "<group>"; };
 		51E5F25D1ACE17F0005A7BDC /* physics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = physics.png; sourceTree = "<group>"; };
@@ -260,10 +259,10 @@
 				51898DC51ACA2817009C665C /* Supporting Files */,
 				51C4225A1AD1B6EC002F7BFF /* ScreenshotsViewController.h */,
 				51C4225B1AD1B6EC002F7BFF /* ScreenshotsViewController.m */,
-				51C4225C1AD1B6EC002F7BFF /* ScreenshotsViewController.xib */,
 				51C4225F1AD1B772002F7BFF /* ScreenshotCollectionViewCell.h */,
 				51C422601AD1B772002F7BFF /* ScreenshotCollectionViewCell.m */,
-				51C422611AD1B772002F7BFF /* ScreenshotCollectionViewCell.xib */,
+				51C422641AD1C3E1002F7BFF /* CSTabBarViewController.h */,
+				51C422651AD1C3E1002F7BFF /* CSTabBarViewController.m */,
 			);
 			path = CheatSheet;
 			sourceTree = "<group>";
@@ -582,8 +581,6 @@
 			files = (
 				51E5F25F1ACE17F0005A7BDC /* algebraformulas.gif in Resources */,
 				51E5F2601ACE17F0005A7BDC /* physics.png in Resources */,
-				51C422631AD1B772002F7BFF /* ScreenshotCollectionViewCell.xib in Resources */,
-				51C4225E1AD1B6EC002F7BFF /* ScreenshotsViewController.xib in Resources */,
 				51898DD71ACA2817009C665C /* Main.storyboard in Resources */,
 				51E5F25E1ACE17F0005A7BDC /* geometricalformulas.png in Resources */,
 				51E5F2621ACE1967005A7BDC /* periodictable.jpg in Resources */,
@@ -644,6 +641,7 @@
 				51898DCE1ACA2817009C665C /* CheatSheet.xcdatamodeld in Sources */,
 				51898DD41ACA2817009C665C /* DetailViewController.m in Sources */,
 				51898DD11ACA2817009C665C /* MasterViewController.m in Sources */,
+				51C422661AD1C3E1002F7BFF /* CSTabBarViewController.m in Sources */,
 				51C422621AD1B772002F7BFF /* ScreenshotCollectionViewCell.m in Sources */,
 				51898DCB1ACA2817009C665C /* AppDelegate.m in Sources */,
 				51898DC81ACA2817009C665C /* main.m in Sources */,

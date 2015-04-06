@@ -30,7 +30,6 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem title];
         self.navigationItem.title = self.detailItem.title;
         if (self.detailItem.fullImage) {
             self.imageView.image = [UIImage imageWithData:self.detailItem.fullImage];
@@ -44,18 +43,15 @@
         }
     }
     
-    self.screenshotView.layer.borderColor = [[UIColor blackColor] CGColor];
-    self.screenshotView.layer.borderWidth = 5.;
+    self.screenshotView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
+    self.screenshotView.layer.borderWidth = 4.;
     
     [self.captureButton.layer setCornerRadius:8.];
     [self.captureButton.layer setShadowColor:[[UIColor blackColor] CGColor]];
-    [self.captureButton.layer setShadowRadius:10.];
-    [self.captureButton.layer setShadowOffset:CGSizeMake(5., 5.)];
-    [self.captureButton.layer setShadowOpacity:.7];
-    
-    [self.photoScreensTabBar setSelectedItem:self.photoTabBarItem];
-    self.screenshotsTabBarItem.badgeValue = [[NSNumber numberWithInteger:[self.detailItem.screenshots count]] stringValue];
-    self.photoScreensTabBar.delegate = self;
+    [self.captureButton.layer setShadowRadius:5.];
+    [self.captureButton.layer setShadowOffset:CGSizeMake(2., 2.)];
+    [self.captureButton.layer setShadowOpacity:.9];
+
     
     self.imageView.userInteractionEnabled = YES;
     UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scaleImage:)];
@@ -78,7 +74,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)scaleImage:(UIPinchGestureRecognizer *)recognizer {
+- (void)scaleImage:(UIPinchGestureRecognizer *)recognizer {
     recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
     recognizer.scale = 1;
 }
@@ -189,7 +185,7 @@
 }
 
 - (void)updateScreenshotBadgeValue {
-    self.screenshotsTabBarItem.badgeValue = [[NSNumber numberWithInteger:[self.screenshotsTabBarItem.badgeValue integerValue] + 1] stringValue];
+    [self.tabBarDelegate updateTabBarBadgeValue];
 }
 
 - (void)flashScreen {
@@ -204,16 +200,6 @@
     [self.screenshotView setBackgroundColor:[UIColor clearColor]];
     
     [UIView commitAnimations];
-}
-
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    if (item == self.screenshotsTabBarItem) {
-        NSLog(@"Tabbar item screenshot clicked");
-        ScreenshotsViewController *screenshotsViewController = [ScreenshotsViewController new];
-        screenshotsViewController.screenshots = self.detailItem.screenshots;
-        
-        [self presentViewController:screenshotsViewController animated:YES completion:nil];
-    }
 }
 
 

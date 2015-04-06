@@ -7,7 +7,7 @@
 //
 
 #import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "CSTabBarViewController.h"
 #import <WatchCoreDataProxy/WatchCoreDataProxy.h>
 
 @interface MasterViewController ()
@@ -32,7 +32,7 @@
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.tabBarController = (CSTabBarViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.title = @"My Cheat Sheets";
 }
 
@@ -74,7 +74,7 @@
        // dataAccess.fetchedResultsController
         //[self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         
-        [self performSegueWithIdentifier:@"showDetail" sender:managedObject];
+        [self performSegueWithIdentifier:@"tabBarDetail" sender:managedObject];
         
 
     }];
@@ -97,7 +97,7 @@
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)managedObject {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    if ([[segue identifier] isEqualToString:@"tabBarDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         DataAccess *dataAccess = [DataAccess sharedInstance];
@@ -107,12 +107,11 @@
             cheatSheetDocument = managedObject;
         }
         
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:cheatSheetDocument];
+        CSTabBarViewController *tabBarViewController = (CSTabBarViewController *)[[segue destinationViewController] topViewController];
+        [tabBarViewController setDetailItem:cheatSheetDocument];
         
-        [controller setManagedObjectContext:dataAccess.managedObjectContext];
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
+        tabBarViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        tabBarViewController.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
 
