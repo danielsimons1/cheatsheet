@@ -29,6 +29,7 @@
         [detailViewController setDetailItem:_detailItem];
         
         ScreenshotsViewController * screenshotsViewController = (ScreenshotsViewController *)self.childViewControllers.lastObject;
+        screenshotsViewController.tabBarDelegate = self;
         [screenshotsViewController setScreenshots:self.detailItem.screenshots];
     }
 }
@@ -37,6 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = self.detailItem.title;
+    self.delegate = self;
     UITabBarItem *screenshotButtonItem = self.tabBar.items.lastObject;
     screenshotButtonItem.badgeValue = [[NSNumber numberWithInteger:[self.detailItem.screenshots count]] stringValue];
 }
@@ -56,13 +58,39 @@
 }
 */
 
-- (void)updateTabBarBadgeValue {
+- (void)incrementTabBarBadgeValue {
     UITabBarItem *screenshotButtonItem = self.tabBar.items.lastObject;
     screenshotButtonItem.badgeValue = [[NSNumber numberWithInteger:[screenshotButtonItem.badgeValue integerValue] + 1] stringValue];
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+- (void)decrementTabBarBadgeValue {
+    UITabBarItem *screenshotButtonItem = self.tabBar.items.lastObject;
+    NSInteger badgeValue = [screenshotButtonItem.badgeValue integerValue] - 1;
+    screenshotButtonItem.badgeValue = [[NSNumber numberWithInteger:badgeValue] stringValue];
     
+    //Go back to Capture View Controller if there are no more screenshots
+    if (badgeValue == 0) {
+        [self setSelectedIndex:0];
+    }
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if ([viewController isKindOfClass:[ScreenshotsViewController class]] && [self.detailItem.screenshots count] == 0) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"You Have No Screenshots" message:@"Tap the Capture button to create a screenshot!" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return NO;
+    } else if ([viewController isKindOfClass:[ScreenshotsViewController class]]) {
+        self.navigationItem.rightBarButtonItem = nil;
+    } else {
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    }
+    return YES;
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    [[self.viewControllers firstObject] setEditing:editing animated:animated];
 }
 
 @end

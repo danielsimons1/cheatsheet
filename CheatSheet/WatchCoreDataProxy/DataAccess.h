@@ -25,5 +25,6 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)storeScreenshotForData:(CSData *)csdata screenshotData:(NSData *)pngData scale:(CGFloat)imageScale translationX:(CGFloat)imageTranslationX translationY:(CGFloat)imageTranslationY;
+- (void)removeScreenshot:(CSScreenshot *)screenshot;
 
 @end

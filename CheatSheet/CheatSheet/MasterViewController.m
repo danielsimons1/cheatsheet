@@ -145,6 +145,7 @@
         
         [dataAccess saveContext];
 
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationRight];
     }
 }
 

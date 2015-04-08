@@ -12,6 +12,8 @@
 
 @interface DetailViewController ()
 
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *captureImageViews;
+@property (strong, nonatomic) NSData *fullImageBackup;
 @end
 
 @implementation DetailViewController
@@ -32,25 +34,33 @@
     if (self.detailItem) {
         self.navigationItem.title = self.detailItem.title;
         if (self.detailItem.fullImage) {
+            self.parentViewController.navigationItem.rightBarButtonItem = self.parentViewController.editButtonItem;
             self.imageView.image = [UIImage imageWithData:self.detailItem.fullImage];
             self.uploadPhotoView.hidden = YES;
-            self.imageView.hidden = NO;
+            
+            for (UIView *view in self.captureImageViews) {
+                view.hidden = NO;
+            }
+            
         } else {
-            self.imageView.hidden = YES;
+            self.navigationItem.rightBarButtonItem = nil;
+            for (UIView *view in self.captureImageViews) {
+                view.hidden = YES;
+            }
             self.uploadPhotoView.hidden = NO;
-            [self.selectPhotoButton.layer setCornerRadius:6.];
-            [self.takePhotoButton.layer setCornerRadius:6.];
+            [self.selectPhotoButton.layer setCornerRadius:12.];
+            [self.takePhotoButton.layer setCornerRadius:12.];
         }
     }
     
     self.screenshotView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
-    self.screenshotView.layer.borderWidth = 4.;
+    self.screenshotView.layer.borderWidth = 2.;
     
-    [self.captureButton.layer setCornerRadius:8.];
+    [self.captureButton.layer setCornerRadius:20.];
     [self.captureButton.layer setShadowColor:[[UIColor blackColor] CGColor]];
-    [self.captureButton.layer setShadowRadius:5.];
-    [self.captureButton.layer setShadowOffset:CGSizeMake(2., 2.)];
-    [self.captureButton.layer setShadowOpacity:.9];
+    [self.captureButton.layer setShadowRadius:0.];
+    [self.captureButton.layer setShadowOffset:CGSizeMake(0., 0.)];
+    [self.captureButton.layer setShadowOpacity:.5];
 
     
     self.imageView.userInteractionEnabled = YES;
@@ -128,12 +138,13 @@
 
 
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    [self configureView];
+    [self.parentViewController setEditing:NO animated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
+    self.detailItem.fullImage = self.fullImageBackup;
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    [self.parentViewController setEditing:NO animated:YES];
     [self configureView];
 }
 
@@ -185,7 +196,7 @@
 }
 
 - (void)updateScreenshotBadgeValue {
-    [self.tabBarDelegate updateTabBarBadgeValue];
+    [self.tabBarDelegate incrementTabBarBadgeValue];
 }
 
 - (void)flashScreen {
@@ -200,6 +211,17 @@
     [self.screenshotView setBackgroundColor:[UIColor clearColor]];
     
     [UIView commitAnimations];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    if (editing) {
+        self.fullImageBackup = self.detailItem.fullImage;
+        self.detailItem.fullImage = nil;
+    } else if (!self.detailItem.fullImage) {
+        self.detailItem.fullImage = self.fullImageBackup;
+    }
+    [self configureView];
 }
 
 

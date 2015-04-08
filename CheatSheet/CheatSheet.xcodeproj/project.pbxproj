@@ -10,6 +10,7 @@
 		5119535E1ACC9B840059B626 /* SecondInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5119535D1ACC9B840059B626 /* SecondInterfaceController.m */; };
 		5119535F1ACCF8D90059B626 /* CheatSheet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51898DCC1ACA2817009C665C /* CheatSheet.xcdatamodeld */; };
 		511CE1791ACC84D300E89504 /* WatchCoreDataProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A822FC1ACC60A500965436 /* WatchCoreDataProxy.framework */; };
+		5177DBF91AD359BC002B4606 /* ScreenShotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5177DBF81AD359BB002B4606 /* ScreenShotViewController.m */; };
 		51898DC81ACA2817009C665C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51898DC71ACA2817009C665C /* main.m */; };
 		51898DCB1ACA2817009C665C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51898DCA1ACA2817009C665C /* AppDelegate.m */; };
 		51898DCE1ACA2817009C665C /* CheatSheet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51898DCC1ACA2817009C665C /* CheatSheet.xcdatamodeld */; };
@@ -120,6 +121,8 @@
 /* Begin PBXFileReference section */
 		5119535C1ACC9B840059B626 /* SecondInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondInterfaceController.h; sourceTree = "<group>"; };
 		5119535D1ACC9B840059B626 /* SecondInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondInterfaceController.m; sourceTree = "<group>"; };
+		5177DBF71AD359BB002B4606 /* ScreenShotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenShotViewController.h; sourceTree = "<group>"; };
+		5177DBF81AD359BB002B4606 /* ScreenShotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenShotViewController.m; sourceTree = "<group>"; };
 		51898DC21ACA2817009C665C /* CheatSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheatSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51898DC61ACA2817009C665C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51898DC71ACA2817009C665C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 				51C422601AD1B772002F7BFF /* ScreenshotCollectionViewCell.m */,
 				51C422641AD1C3E1002F7BFF /* CSTabBarViewController.h */,
 				51C422651AD1C3E1002F7BFF /* CSTabBarViewController.m */,
+				5177DBF71AD359BB002B4606 /* ScreenShotViewController.h */,
+				5177DBF81AD359BB002B4606 /* ScreenShotViewController.m */,
 			);
 			path = CheatSheet;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5177DBF91AD359BC002B4606 /* ScreenShotViewController.m in Sources */,
 				51C4225D1AD1B6EC002F7BFF /* ScreenshotsViewController.m in Sources */,
 				51898DCE1ACA2817009C665C /* CheatSheet.xcdatamodeld in Sources */,
 				51898DD41ACA2817009C665C /* DetailViewController.m in Sources */,

@@ -195,4 +195,9 @@
     [self saveContext];
 }
 
+- (void)removeScreenshot:(CSScreenshot *)screenshot {
+    [self.managedObjectContext deleteObject:screenshot];
+    [self saveContext];
+}
+
 @end

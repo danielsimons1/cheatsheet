@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CSTabBarViewController.h"
+#import "CSScreenshot.h"
 
-@interface ScreenshotsViewController : UIViewController<UICollectionViewDataSource>
+@protocol ScreenshotsDelegate <NSObject>
+
+- (void) deleteScreenshot:(CSScreenshot *)screenshot;
+
+@end
+
+@interface ScreenshotsViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, ScreenshotsDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *screenshotCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 
 @property (strong, nonatomic) NSMutableSet *screenshots;
+@property (strong, nonatomic) id<CSUITabBarDelegate> tabBarDelegate;
+
 @end

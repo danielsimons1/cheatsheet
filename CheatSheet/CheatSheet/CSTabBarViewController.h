@@ -11,7 +11,8 @@
 
 @protocol CSUITabBarDelegate <NSObject>
 
-- (void)updateTabBarBadgeValue;
+- (void)incrementTabBarBadgeValue;
+- (void)decrementTabBarBadgeValue;
 
 @end
 
