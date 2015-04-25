@@ -33,7 +33,7 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.tabBarController = (CSTabBarViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    self.title = @"Note Cards";
+    self.title = @"Notes";
 }
 
 - (void)didReceiveMemoryWarning {

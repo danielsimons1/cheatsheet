@@ -31,7 +31,7 @@
 		51A00C211ACB88A10037EDF3 /* conversions.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C201ACB88A10037EDF3 /* conversions.jpg */; };
 		51A00C2C1ACB97E90037EDF3 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A00C2B1ACB97E90037EDF3 /* InterfaceController.m */; };
 		51A00C2E1ACB97E90037EDF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C2D1ACB97E90037EDF3 /* Images.xcassets */; };
-		51A00C321ACB97E90037EDF3 /* NoteCard WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C311ACB97E90037EDF3 /* NoteCard WatchKit App.app */; };
+		51A00C321ACB97E90037EDF3 /* Whiteboard Notes.app in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C311ACB97E90037EDF3 /* Whiteboard Notes.app */; };
 		51A00C3A1ACB97EA0037EDF3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C381ACB97EA0037EDF3 /* Interface.storyboard */; };
 		51A00C3C1ACB97EA0037EDF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C3B1ACB97EA0037EDF3 /* Images.xcassets */; };
 		51A00C491ACB99FE0037EDF3 /* CustomTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A00C481ACB99FE0037EDF3 /* CustomTableRowController.m */; };
@@ -149,7 +149,7 @@
 		51A00C2A1ACB97E90037EDF3 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
 		51A00C2B1ACB97E90037EDF3 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
 		51A00C2D1ACB97E90037EDF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		51A00C311ACB97E90037EDF3 /* NoteCard WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NoteCard WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		51A00C311ACB97E90037EDF3 /* Whiteboard Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whiteboard Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A00C371ACB97E90037EDF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51A00C391ACB97EA0037EDF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		51A00C3B1ACB97EA0037EDF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 			children = (
 				51898DC21ACA2817009C665C /* NoteCard.app */,
 				51A00C261ACB97E90037EDF3 /* NoteCard WatchKit Extension.appex */,
-				51A00C311ACB97E90037EDF3 /* NoteCard WatchKit App.app */,
+				51A00C311ACB97E90037EDF3 /* Whiteboard Notes.app */,
 				51A822FC1ACC60A500965436 /* WatchCoreDataProxy.framework */,
 				51A823061ACC60A500965436 /* WatchCoreDataProxyTests.xctest */,
 			);
@@ -444,7 +444,7 @@
 			);
 			name = "Whiteboard Notes";
 			productName = "NoteCard WatchKit App";
-			productReference = 51A00C311ACB97E90037EDF3 /* NoteCard WatchKit App.app */;
+			productReference = 51A00C311ACB97E90037EDF3 /* Whiteboard Notes.app */;
 			productType = "com.apple.product-type.application.watchapp";
 		};
 		51A822FB1ACC60A500965436 /* WatchCoreDataProxy */ = {
@@ -569,7 +569,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51A00C321ACB97E90037EDF3 /* NoteCard WatchKit App.app in Resources */,
+				51A00C321ACB97E90037EDF3 /* Whiteboard Notes.app in Resources */,
 				51A00C2E1ACB97E90037EDF3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
