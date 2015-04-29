@@ -12,6 +12,7 @@
 #import "CustomTableRowController.h"
 
 @interface InterfaceController()
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *noDataLabel;
 
 @end
 
@@ -45,6 +46,8 @@
         CustomTableRowController *tableRowController = [self.tableView rowControllerAtIndex:index];
         [[tableRowController titleLabel] setText:[data title]];
     }
+
+    [self.noDataLabel setHidden:(fetchedObjects && fetchedObjects.count > 0)];
 }
 
 - (void)willActivate {

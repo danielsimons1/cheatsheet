@@ -35,6 +35,7 @@
 		51A00C3A1ACB97EA0037EDF3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C381ACB97EA0037EDF3 /* Interface.storyboard */; };
 		51A00C3C1ACB97EA0037EDF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51A00C3B1ACB97EA0037EDF3 /* Images.xcassets */; };
 		51A00C491ACB99FE0037EDF3 /* CustomTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A00C481ACB99FE0037EDF3 /* CustomTableRowController.m */; };
+		51A6F0BB1AF16CDA00B0ECDF /* ImageTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A6F0BA1AF16CDA00B0ECDF /* ImageTableRowController.m */; };
 		51A823071ACC60A500965436 /* WatchCoreDataProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A822FC1ACC60A500965436 /* WatchCoreDataProxy.framework */; };
 		51A823101ACC60A500965436 /* WatchCoreDataProxyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A8230F1ACC60A500965436 /* WatchCoreDataProxyTests.m */; };
 		51A823141ACC60A500965436 /* WatchCoreDataProxy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 51A822FC1ACC60A500965436 /* WatchCoreDataProxy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -156,6 +157,8 @@
 		51A00C471ACB99FE0037EDF3 /* CustomTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableRowController.h; sourceTree = "<group>"; };
 		51A00C481ACB99FE0037EDF3 /* CustomTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowController.m; sourceTree = "<group>"; };
 		51A00C4B1ACBA4EC0037EDF3 /* NoteCard WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "NoteCard WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		51A6F0B91AF16CDA00B0ECDF /* ImageTableRowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableRowController.h; sourceTree = "<group>"; };
+		51A6F0BA1AF16CDA00B0ECDF /* ImageTableRowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableRowController.m; sourceTree = "<group>"; };
 		51A822FC1ACC60A500965436 /* WatchCoreDataProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WatchCoreDataProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A822FF1ACC60A500965436 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51A823001ACC60A500965436 /* WatchCoreDataProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchCoreDataProxy.h; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				51A00C481ACB99FE0037EDF3 /* CustomTableRowController.m */,
 				5119535C1ACC9B840059B626 /* SecondInterfaceController.h */,
 				5119535D1ACC9B840059B626 /* SecondInterfaceController.m */,
+				51A6F0B91AF16CDA00B0ECDF /* ImageTableRowController.h */,
+				51A6F0BA1AF16CDA00B0ECDF /* ImageTableRowController.m */,
 			);
 			path = "NoteCard WatchKit Extension";
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 			files = (
 				5119535F1ACCF8D90059B626 /* NoteCard.xcdatamodeld in Sources */,
 				5119535E1ACC9B840059B626 /* SecondInterfaceController.m in Sources */,
+				51A6F0BB1AF16CDA00B0ECDF /* ImageTableRowController.m in Sources */,
 				51A00C491ACB99FE0037EDF3 /* CustomTableRowController.m in Sources */,
 				51A00C2C1ACB97E90037EDF3 /* InterfaceController.m in Sources */,
 			);

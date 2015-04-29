@@ -10,6 +10,5 @@
 #import <Foundation/Foundation.h>
 
 @interface SecondInterfaceController : WKInterfaceController
-@property (strong, nonatomic) IBOutlet WKInterfaceImage *imageView;
 
 @end
